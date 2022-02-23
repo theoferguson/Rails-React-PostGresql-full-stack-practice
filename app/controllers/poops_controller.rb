@@ -1,0 +1,2 @@
+class PoopsController < ApplicationController
+end
