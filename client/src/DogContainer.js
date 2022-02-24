@@ -2,14 +2,23 @@ import { useState, useEffect } from "react"
 import './DogContainer.css'
 
 
-function DogContainer({setAllPoops, allPoops}) {
+function DogContainer({ setAllPoops, allPoops, issueRequest, setIssueRequest }) {
+    const [dogs, setDogs] = useState([])
+
+    useEffect(() => {
+        fetch('/dogs')
+            .then((r) => r.json())
+            .then((allDogs) => {
+                setDogs(allDogs)
+            })
+    }, [issueRequest])
 
     function recordPoop(e) {
         console.log(e.target.name)
 
         setAllPoops([{
             name: e.target.name,
-            pooped_at: new Date().getHours() + ":" + new Date().getMinutes() 
+            pooped_at: new Date().getHours() + ":" + new Date().getMinutes()
         }, ...allPoops])
     }
 
@@ -17,7 +26,7 @@ function DogContainer({setAllPoops, allPoops}) {
 
     return (
         <div className="cards">
-            <div id="lumi-card" className="card">
+            {/* <div id="lumi-card" className="card">
                 <h2>Lumi</h2>
                 <img src='/lumi.jpg' alt="image of lumi" />
                 <button onClick={recordPoop} name='lumi'>
@@ -30,7 +39,7 @@ function DogContainer({setAllPoops, allPoops}) {
                 <button onClick={recordPoop} name='monte'>
                     monte pooped
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

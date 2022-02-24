@@ -6,12 +6,13 @@ import PoopList from "./PoopList"
 
 function App() {
   const [allPoops, setAllPoops] = useState([])
+  const [issueRequest, setIssueRequest] = useState(false)
 
   return (
     <BrowserRouter>
       <div className="App">
         <header>
-          <DogContainer allPoops={allPoops} setAllPoops={setAllPoops} />
+          <DogContainer allPoops={allPoops} setAllPoops={setAllPoops} issueRequest={issueRequest} setIssueRequest={setIssueRequest} />
         </header>
         <PoopList allPoops={allPoops} setAllPoops={setAllPoops} />
       </div>
